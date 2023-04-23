@@ -1,31 +1,16 @@
 var express = require('express');
 var router = express.Router();
+const productosController = require("../controllers/productosController")
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  const productos = [
-    {id:1, name:"Moto G", price: 600.00},
-    {id:2, name:"Sony XPeria", price: 2000.0},
-    {id:3, name:"IPhone", price: 3200.0},
-  ]
-  res.json(productos)
-});
+router.get('/', productosController.getAll);
 
-router.get('/:id', function(req, res, next) {
-  const producto = {id:req.params.id, name:"Celular genérico", price: 777.77}
-  res.json(producto)
-});
+router.get('/:id', productosController.getById);
 
-router.post('/', function(req, res, next) {
-  res.json(req.body)
-});
+router.post('/', productosController.create);
 
-router.put('/:id', function(req, res, next) {
-  res.json(req.body)
-});
+router.put('/:id', productosController.update);
 
-router.delete('/:id', function(req, res, next) {
-  res.json({status: "ok"})
-});
+router.delete('/:id', productosController.delete);
 
 module.exports = router;
